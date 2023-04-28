@@ -29,7 +29,7 @@ const SearchWeather = ({ onLocationAdded }) => {
           weather: weatherData.current.condition.text,
         };
 
-        await axios.post("/api/records", location);
+        await axios.post("/api/records", location).then(setCity(""));
         onLocationAdded();
         setMessage(`Successfully added ${weatherData.location.name}`);
       }
