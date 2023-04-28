@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Weather App</title>
+        <title>Weather & News App</title>
       </Head>
 
       <main>
@@ -19,7 +19,7 @@ export default function Home() {
             spacing={5}
           >
             <Grid item>
-              <Typography variant="h3">Weather App</Typography>
+              <Typography variant="h3">Weather & News App</Typography>
             </Grid>
             <Grid item>
               <LocationsList />

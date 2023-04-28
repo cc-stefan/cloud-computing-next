@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import {
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
-  Button,
   Typography,
-  Grid,
-  IconButton,
 } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import SearchWeather from "@/js/components/SearchWeather";
+import { useRouter } from "next/router";
 
 const LocationsList = () => {
   const [locations, setLocations] = useState([]);
@@ -44,6 +46,12 @@ const LocationsList = () => {
   useEffect(() => {
     fetchLocations();
   }, []);
+
+  const router = useRouter();
+
+  const showNews = (city) => {
+    router.push(`/news?city=${encodeURIComponent(city)}`);
+  };
 
   return (
     <div>
@@ -103,13 +111,26 @@ const LocationsList = () => {
                           location.temperature
                         )}°C`}</TableCell>
                         <TableCell>
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => deleteLocation(location._id)}
-                          >
-                            Delete
-                          </Button>
+                          <Stack direction="row" spacing={1}>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              onClick={() =>
+                                showNews(
+                                  `${location.name}, ${location.countryCode}`
+                                )
+                              }
+                            >
+                              Show News
+                            </Button>
+                            <Button
+                              variant="contained"
+                              color="error"
+                              onClick={() => deleteLocation(location._id)}
+                            >
+                              Delete
+                            </Button>
+                          </Stack>
                         </TableCell>
                       </TableRow>
                     ))
