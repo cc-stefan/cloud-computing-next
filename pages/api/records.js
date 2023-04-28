@@ -15,9 +15,33 @@ const getRecord = async (id) => {
 }
 
 const postRecord = async (record) => {
+    if (
+        !record ||
+        !record.name ||
+        !record.countryCode ||
+        typeof record.temperature !== "number" ||
+        !record.weather
+    ) {
+        throw new Error("Invalid record data");
+    }
+
     const collection = await getCollection(COLLECTION_NAME);
-    return collection.insertOne(record);
-}
+    const existingRecord = await collection.findOne({
+        name: record.name,
+        countryCode: record.countryCode,
+    });
+
+    if (existingRecord) {
+        await collection.updateOne(
+            { _id: existingRecord._id },
+            { $set: { weather: record.weather, temperature: record.temperature } }
+        );
+        return existingRecord._id;
+    } else {
+        return collection.insertOne(record);
+    }
+};
+
 
 const putRecord = async (record) => {
     const collection = await getCollection(COLLECTION_NAME);
