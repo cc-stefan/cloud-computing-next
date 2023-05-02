@@ -12,7 +12,7 @@ GitHub: https://github.com/cc-stefan/cloud-computing-next
 
 Vercel: https://cloud-computing-next.vercel.app/
 
-Youtube: https://www.youtube.com/
+Youtube: https://youtu.be/BDBde5WymPQ
 
 ## Cuprins
 
