@@ -1,5 +1,8 @@
 # Proiect Cloud Computing - Weather & News App
 
+### Nume: Ștefan Claudiu-Cristian
+### Grupa: 1121
+
 ## Rulare
 
 ```bash
